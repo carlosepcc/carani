@@ -11,12 +11,17 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   </head>
   <body>
-    <h1>aprendiendo Vue Apps</h1> 
+    <h1>aprendiendo Vue Apps</h1>
     <br />
     <span class="app-title">alimentacion-app</span>
     <div class="app" id="alimentacion-app">
-      <textarea class="w100 p b0" v-model="rawText" rows="12" cols="40"></textarea>
-			<button class="w100">
+      <textarea
+        class="w100 p b0"
+        v-model="rawText"
+        rows="12"
+        cols="40"
+      ></textarea>
+      <button class="w100">
         🗐
         <pre
           @click="copyModText"
@@ -29,7 +34,17 @@
 
     <span class="app-title">vivadita-app</span>
     <div class="app" id="vivadita-app">
-      <textarea v-model="html" rows="8" class="w100" style="font-family:monospace;padding:16px;background: #222;color:#fffd;"></textarea>
+      <textarea
+        v-model="html"
+        rows="8"
+        class="w100"
+        style="
+          font-family: monospace;
+          padding: 16px;
+          background: #222;
+          color: #fffd;
+        "
+      ></textarea>
       <div v-html="html"></div>
       <div class="extended-keyboard">
         <span v-for="btn in buttons">
@@ -69,13 +84,86 @@
         ></todo-item>
       </ol>
     </div>
+
     <span class="app-title">branduci-app</span>
-    <div class="app" id="app-branduci">
-      <nav class="brand-bar">
-        <div id="frame">
-          <span class="brand">XABAL</span>
-          <span class="siglas">CDIS</span>
-          <span class="stands">Gestion de Proceso de Comisión Disciplinaria</span>
+    <div class="app" id="app-branduci" contenteditable="false">
+      <!-- XAVIA -->
+      <nav class="brand-bar xavia-bar">
+        <div id="brand-frame">
+          <span class="brandi i-xavia"></span>
+          <span style="flex-direction: column">
+            <span class="brand" contenteditable>XAVIA</span>
+            <span style="flex-direction: row">
+              <span class="siglas" contenteditable>CDIS </span>
+              <span class="stands" contenteditable>
+                Gestion de Proceso de Comisión Disciplinaria
+              </span>
+            </span>
+          </span>
+        </div>
+      </nav>
+
+      <!-- XABAL -->
+      <nav class="brand-bar xabal-bar">
+        <div id="brand-frame">
+          <span class="brandi i-xabal"></span>
+          <span style="flex-direction: column">
+            <span class="brand" contenteditable>XABAL</span>
+            <span style="flex-direction: row">
+              <span class="siglas" contenteditable>GESAT </span>
+              <span class="stands" contenteditable>
+                Gestión de Actividades Técnicas Productivas
+              </span>
+            </span>
+          </span>
+        </div>
+      </nav>
+
+      <!-- XAUCE -->
+      <nav class="brand-bar xauce-bar">
+        <div id="brand-frame">
+          <span class="brandi i-xauce"></span>
+          <span style="flex-direction: column">
+            <span class="brand" contenteditable>XAUCE</span>
+            <span style="flex-direction: row">
+              <span class="siglas" contenteditable>CDIS </span>
+              <span class="stands" contenteditable>
+                Gestion de Proceso de Comisión Disciplinaria
+              </span>
+            </span>
+          </span>
+        </div>
+      </nav>
+
+      <!-- XEDRO -->
+      <nav class="brand-bar xedro-bar">
+        <div id="brand-frame">
+          <span class="brandi i-xedro"></span>
+          <span style="flex-direction: column">
+            <span class="brand" contenteditable>XEDRO</span>
+            <span style="flex-direction: row">
+              <span class="siglas" contenteditable>CDIS </span>
+              <span class="stands" contenteditable>
+                Gestion de Proceso de Comisión Disciplinaria
+              </span>
+            </span>
+          </span>
+        </div>
+      </nav>
+
+      <!-- XILEMA -->
+      <nav class="brand-bar xilema-bar">
+        <div id="brand-frame">
+          <span class="brandi i-xilema"></span>
+          <span style="flex-direction: column">
+            <span class="brand" contenteditable>XILEMA</span>
+            <span style="flex-direction: row">
+              <span class="siglas" contenteditable>CDIS </span>
+              <span class="stands" contenteditable>
+                Gestion de Proceso de Comisión Disciplinaria
+              </span>
+            </span>
+          </span>
         </div>
       </nav>
     </div>
@@ -105,14 +193,14 @@ Picadillo (80 g )$ 0`,
       methods: {
         copyModText: function () {
           navigator.clipboard.writeText(this.modText);
-          alert("Copiado:\n\n"+this.modText)
-					return true;
+          alert("Copiado:\n\n" + this.modText);
+          return true;
         },
-				pasteText: function () {
+        pasteText: function () {
           this.rawText = navigator.clipboard.readText();
-          alert("Copiado:\n\n"+this.modText)
-					return true;
-        }
+          alert("Copiado:\n\n" + this.modText);
+          return true;
+        },
       },
       computed: {
         modText: function () {
@@ -240,7 +328,9 @@ Picadillo (80 g )$ 0`,
     .p {
       padding: 8px 16px;
     }
-		.b0{border: 0;}
+    .b0 {
+      border: 0;
+    }
     #modTextContainer {
       padding: 32px;
       background: linear-gradient(90deg, rgb(31, 85, 47), rgb(77, 192, 86));
@@ -249,7 +339,8 @@ Picadillo (80 g )$ 0`,
       box-shadow: -1px 1px 8px 0 #0005;
       text-align: start;
     }
-		#modTextContainer {}
+    #modTextContainer {
+    }
     .app-title {
       color: #fffe;
       margin-left: 1em;
@@ -257,68 +348,136 @@ Picadillo (80 g )$ 0`,
       padding: 8px 24px;
       border-radius: 8px 8px 0 0;
     }
-
   </style>
 
-<!--BRANDUCISTYLE-->
-<style>
-  :root {
-    --xabal:#A6351A;
-    --xabaltext:#E14D46;
-    --xauce:#EC7426;
-    --xavia:#4EC61A;
-    --xedro:#C64AB9;
-    --xilema:#4E86DF;
+  <!--BRANDUCISTYLE-->
+  <style>
+    :root {
+      --spritesuci: "https://www.uci.cu/sites/all/themes/uci/images/sprite.png";
+      --xabaldark: #a6351a;
+      --xabal: #e14d46;
+      --xauce: #ec7426;
+      --xavia: #4ec61a;
+      --xedro: #c64ab9;
+      --xilema: #4e86df;
 
-    --upcolor: #323a8b;
-    --downcolor: #11134b;
-    --standscolor:#726584;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: sans-serif;
-  }
-  .siglas {
-    font-weight: 1000;
-    font-size: 20pt;
-    background: -webkit-linear-gradient(
-      var(--upcolor) 50%,
-      var(--downcolor) 50%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .stands {
-    display: inline-block;
-    max-width: 200px;
-    height: 100%;
-    color: var(--standscolor);
-    margin-left: 3px;
-    font-size: 8pt;
-  }
-  .brand {
-    color: var(--xabal);
-    display: block;
-    margin-bottom: -3px;
-    margin-left: 4px;
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: -1px;
-  }
-  .brand-bar{
-    width: 100%;
-box-shadow: 0 2px 0 0 var(--accent);
-background: linear-gradient(160deg,#D14633 50%,#EE8560 62%,#fff 80%);
-}
-  #frame{height: fit-content;
-  width: fit-content;
-  border-bottom-right-radius:100px;
-  background: linear-gradient(#fff 50%,#dedede);
-  padding: 12px 32px 12px 80px;
-  box-shadow: 2px 0 12px -2px #0005;
-  }
-</style>
+      --upcolor: #323a8b;
+      --downcolor: #11134b;
+      --standscolor: #726584;
+    }
+    .brand-bar {
+      margin-bottom: 8px;
+      width: 100%;
+      box-shadow: 0 2px 0 0 var(--xabal);
+      background: linear-gradient(160deg, #d14633 50%, #ee8560 62%, #fff 80%);
+    }
+    .xavia-bar {
+      box-shadow: 0 2px 0 0 var(--xavia);
+      background: linear-gradient(140deg, var(--xavia) 30%, #fff 80%);
+    }
+    .xavia-bar .brand {
+      color: var(--xavia);
+    }
+    .xabal-bar {
+      box-shadow: 0 2px 0 0 var(--xabal);
+      background: linear-gradient(140deg, var(--xabal) 30%, #fff 80%);
+    }
+    .xabal-bar .brand {
+      color: var(--xabal);
+    }
+    .xauce-bar {
+      box-shadow: 0 2px 0 0 var(--xauce);
+      background: linear-gradient(140deg, var(--xauce) 30%, #fff 80%);
+    }
+    .xauce-bar .brand {
+      color: var(--xauce);
+    }
+    .xedro-bar {
+      box-shadow: 0 2px 0 0 var(--xedro);
+      background: linear-gradient(140deg, var(--xedro) 30%, #fff 80%);
+    }
+    .xedro-bar .brand {
+      color: var(--xedro);
+    }
+    .xilema-bar {
+      box-shadow: 0 2px 0 0 var(--xilema);
+      background: linear-gradient(140deg, var(--xilema) 30%, #fff 80%);
+    }
+    .xilema-bar .brand {
+      color: var(--xilema);
+    }
+    #brand-frame {
+      resize: horizontal;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: 8px;
+      height: fit-content;
+      width: fit-content;
+      border-bottom-right-radius: 100px;
+      background: linear-gradient(#fff 50%, #dedede);
+      padding: 8px 16px;
+      box-shadow: 2px 0 12px -2px #0005;
+    }
+    .brandi {
+      height: 51px;
+      width: 51px;
+    }
+    .i-xavia {
+      background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
+        no-repeat 0-1646px;
+    }
+    .i-xabal {
+      background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
+        no-repeat 0 -1402px;
+    }
+    .i-xauce {
+      background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
+        no-repeat 0-1524px;
+    }
+    .i-xedro {
+      background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
+        no-repeat 0-1769px;
+    }
+    .i-xilema {
+      background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
+        no-repeat 0-1890px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .siglas {
+      font-weight: 1000;
+      font-size: 20pt;
+      background: -webkit-linear-gradient(
+        var(--upcolor) 50%,
+        var(--downcolor) 50%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stands {
+      display: inline-block;
+      max-width: 200px;
+      height: 100%;
+      color: var(--standscolor);
+      margin-left: 3px;
+      font-size: 8pt;
+    }
+    .brand {
+      text-transform: uppercase;
+      color: var(--xabal);
+      display: block;
+      margin-bottom: -3px;
+      margin-left: 4px;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+  </style>
 </html>
