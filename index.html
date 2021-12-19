@@ -1,11 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset=utf-8>
-	<title>Carani</title>
- 	<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	<style></style>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>aprendiendo</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <h1>aprendiendo Vue Apps</h1> 
+    <br />
+    <span class="app-title">alimentacion-app</span>
+    <div class="app" id="alimentacion-app">
+      <textarea class="w100 p b0" v-model="rawText" rows="12" cols="40"></textarea>
+			<button class="w100">
+        🗐
+        <pre
+          @click="copyModText"
+          v-html="modText"
+          id="modTextContainer"
+          class="w100"
+        ></pre>
+      </button>
+    </div>
+
+    <span class="app-title">vivadita-app</span>
+    <div class="app" id="vivadita-app">
+      <textarea v-model="html" rows="8" class="w100" style="font-family:monospace;padding:16px;background: #222;color:#fffd;"></textarea>
+      <div v-html="html"></div>
+      <div class="extended-keyboard">
+        <span v-for="btn in buttons">
+          <input
+            type="button"
+            v-bind:value="btn.text"
+            v-bind:name="btn.value"
+          />&nbsp;
+        </span>
+      </div>
+    </div>
+    <br />
+    <span class="app-title">carani-app</span>
+    <div class="app" id="carani-app">
+      <div>
+        <ani-frame
+          v-for="frame in frames"
+          v-bind:f="frame"
+          v-bind:key="frame.id"
+        />
+      </div>
+    </div>
+
+    <span class="app-title">todos-app</span>
+    <div class="app" id="app-7">
+      <ol>
+        <!--
+      Now we provide each todo-item with the todo object
+      it's representing, so that its content can be dynamic.
+      We also need to provide each component with a "key",
+      which will be explained later.
+    -->
+        <todo-item
+          v-for="item in groceryList"
+          v-bind:todo="item"
+          v-bind:key="item.id"
+        ></todo-item>
+      </ol>
+    </div>
+    <span class="app-title">branduci-app</span>
+    <div class="app" id="app-branduci">
+      <nav class="brand-bar">
+        <div id="frame">
+          <span class="brand">XABAL</span>
+          <span class="siglas">CDIS</span>
+          <span class="stands">Gestion de Proceso de Comisión Disciplinaria</span>
+        </div>
+      </nav>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el: "#alimentacion-app",
+      data: {
+        rawText: `Lunes, 29/11/2021
+   Desayuno
+Refresco de mermelada de mango (232 ml )$ 0
+Mayonesa elaborada (20 g )$ 0
+Pan 50 g (50 g )$ 0
+   Almuerzo
+Dulce de frutabomba (80 g )$ 0
+Arroz blanco (180 g )$ 0
+Huevo hervido. (1 u )$ 0
+Potaje de chícharo (200 g )$ 0
+Boniato hervido (90 g )$ 0
+   Comida
+Pan 50 g (50 g )$ 0
+Mermelada de pulpa de mango (80 g )$ 0
+Arroz blanco (180 g )$ 0
+Potaje de chícharo (200 g )$ 0
+Picadillo (80 g )$ 0`,
+      },
+      methods: {
+        copyModText: function () {
+          navigator.clipboard.writeText(this.modText);
+          alert("Copiado:\n\n"+this.modText)
+					return true;
+        },
+				pasteText: function () {
+          this.rawText = navigator.clipboard.readText();
+          alert("Copiado:\n\n"+this.modText)
+					return true;
+        }
+      },
+      computed: {
+        modText: function () {
+          let modText = this.rawText;
+
+          modText = "**" + modText;
+          modText = modText.replace("2021", "2021**");
+
+          modText = modText.replace(/Desayuno/g, "\nDESAYUNO");
+          modText = modText.replace(/Almuerzo/g, "\nALMUERZO");
+          modText = modText.replace(/Comida/g, "\nCOMIDA");
+          modText = modText.replace(/\$ 0/g, "");
+          modText = modText.replace(/Vianda/g, "🥔   Vianda");
+          modText = modText.replace(/Arroz blanco/g, "🍚   Arroz blanco");
+          modText = modText.replace(/Pan/g, "🍔   Pan");
+          modText = modText.replace(
+            /Refresco de mermelada de mango/g,
+            "🥃   Refresco de mermelada de mango"
+          );
+          modText = modText.replace(/Huevo hervido/g, "🥚   Huevo hervido");
+          modText = modText.replace(/Sopa o potaje/g, "🥣   Sopa o potaje");
+          modText = modText.replace(/Salchicha/g, "🌭   Salchicha");
+          modText = modText.replace(/\./g, "");
+          modText = modText.replace(/'/g, "");
+          modText = modText.replace(
+            /Potaje de chícharo/g,
+            "🥘   Potaje de chícharo"
+          );
+          modText = modText.replace(/Boniato hervido/g, "🥔   Boniato hervido");
+          modText = modText.replace(
+            /Dulce de frutabomba/g,
+            "🍈   Dulce de frutabomba"
+          );
+          modText = modText.replace(/Pan 50 g/g, "Pan");
+          modText = modText.replace(/\)/g, "");
+          modText = modText.replace(/\(/g, "  ");
+          modText = modText.replace(/ g/g, "g");
+          modText = modText.replace(/Mayonesa/g, "🧈   Mayonesa");
+          modText = modText.replace(
+            /Mermelada de pulpa de mango/g,
+            "🥭   Mermelada de pulpa de mango"
+          );
+          modText = modText.replace(/Picadillo/g, "🧆   Picadillo");
+          modText = modText.replace(/Pollo/g, "🍗   Pollo");
+          return modText;
+        },
+      },
+    });
+
+    Vue.component("ani-frame", {
+      props: ["f"],
+      template:
+        '<div class="card"><small>{{f.id}}</small> | <span>{{f.span}}</span> <span class=card> {{ f.text }}<span/></div>',
+    });
+    var app = new Vue({
+      el: "#carani-app",
+      data: {
+        frames: [
+          { id: 1, text: "(o_o)", span: 4 },
+          { id: 2, text: "(-_-)", span: 1 },
+          { id: 3, text: "(._.)", span: 3 },
+        ],
+      },
+    });
+
+    Vue.component("todo-item", {
+      props: ["todo"],
+      template: "<li>{{ todo.text }}</li>",
+    });
+
+    var app7 = new Vue({
+      el: "#app-7",
+      data: {
+        groceryList: [
+          { id: 0, text: "Vegetables" },
+          { id: 1, text: "Cheese" },
+          { id: 2, text: "Whatever else humans are supposed to eat" },
+        ],
+      },
+    });
+
+    var app = new Vue({
+      el: "#vivadita-app",
+      data: {
+        html: "<h2>Hola Vue<h2>",
+        buttons: [
+          { text: "</>", value: "<></>" },
+          { text: '=""', value: '=""' },
+          { text: "<!-->", value: "<!---->" },
+        ],
+      },
+    });
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+      padding-bottom: 80%;
+      background: linear-gradient(rgb(103, 214, 113), rgb(27, 209, 170));
+    }
+    .card {
+      box-shadow: 0 0 4px 0 #0002;
+      padding: 16px;
+      margin: 4px;
+      border-radius: 4px;
+    }
+    .app {
+      resize: both;
+      overflow: auto;
+      box-shadow: 1px 1px 6px 0 #0003 inset;
+      padding: 32px;
+      margin: 4px;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      background: white;
+      border: 4px solid #0b7;
+      border-top: 3px solid rgb(14, 68, 64);
+    }
+    .w100 {
+      width: 100%;
+    }
+    .p {
+      padding: 8px 16px;
+    }
+		.b0{border: 0;}
+    #modTextContainer {
+      padding: 32px;
+      background: linear-gradient(90deg, rgb(31, 85, 47), rgb(77, 192, 86));
+      color: #fffc;
+      border-radius: 4px;
+      box-shadow: -1px 1px 8px 0 #0005;
+      text-align: start;
+    }
+		#modTextContainer {}
+    .app-title {
+      color: #fffe;
+      margin-left: 1em;
+      background: #0006;
+      padding: 8px 24px;
+      border-radius: 8px 8px 0 0;
+    }
+
+  </style>
+
+<!--BRANDUCISTYLE-->
+<style>
+  :root {
+    --xabal:#A6351A;
+    --xabaltext:#E14D46;
+    --xauce:#EC7426;
+    --xavia:#4EC61A;
+    --xedro:#C64AB9;
+    --xilema:#4E86DF;
+
+    --upcolor: #323a8b;
+    --downcolor: #11134b;
+    --standscolor:#726584;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .siglas {
+    font-weight: 1000;
+    font-size: 20pt;
+    background: -webkit-linear-gradient(
+      var(--upcolor) 50%,
+      var(--downcolor) 50%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stands {
+    display: inline-block;
+    max-width: 200px;
+    height: 100%;
+    color: var(--standscolor);
+    margin-left: 3px;
+    font-size: 8pt;
+  }
+  .brand {
+    color: var(--xabal);
+    display: block;
+    margin-bottom: -3px;
+    margin-left: 4px;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .brand-bar{
+    width: 100%;
+box-shadow: 0 2px 0 0 var(--accent);
+background: linear-gradient(160deg,#D14633 50%,#EE8560 62%,#fff 80%);
+}
+  #frame{height: fit-content;
+  width: fit-content;
+  border-bottom-right-radius:100px;
+  background: linear-gradient(#fff 50%,#dedede);
+  padding: 12px 32px 12px 80px;
+  box-shadow: 2px 0 12px -2px #0005;
+  }
+</style>
 </html>
