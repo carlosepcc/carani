@@ -9,28 +9,11 @@
     />
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
   </head>
   <body>
     <h1>aprendiendo Vue Apps con cdn</h1>
     <br />
-    <span class="app-title">alimentacion-app</span>
-    <div class="app" id="alimentacion-app">
-      <textarea
-        class="w100 p b0"
-        v-model="rawText"
-        rows="12"
-        cols="40"
-      ></textarea>
-      <button class="w100">
-        🗐
-        <pre
-          @click="copyModText"
-          v-html="modText"
-          id="modTextContainer"
-          class="w100"
-        ></pre>
-      </button>
-    </div>
 
     <span class="app-title">vivadita-app</span>
     <div class="app" id="vivadita-app">
@@ -57,7 +40,7 @@
       </div>
     </div>
     <br />
-    <span class="app-title">carani-app</span>
+    <!--  <span class="app-title">carani-app</span>
     <div class="app" id="carani-app">
       <div>
         <ani-frame
@@ -71,12 +54,6 @@
     <span class="app-title">todos-app</span>
     <div class="app" id="app-7">
       <ol>
-        <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
-    -->
         <todo-item
           v-for="item in groceryList"
           v-bind:todo="item"
@@ -84,19 +61,22 @@
         ></todo-item>
       </ol>
     </div>
-
+ -->
     <span class="app-title">branduci-app</span>
     <div class="app" id="app-branduci" contenteditable="false">
-      <!-- XAVIA -->
+      
+      <div id=brand-bars-wrapper>
+        <!-- XAVIA -->
       <nav class="brand-bar xavia-bar">
         <div id="brand-frame">
           <span class="brandi i-xavia"></span>
           <span style="flex-direction: column">
             <span class="brand" contenteditable>XAVIA</span>
             <span style="flex-direction: row">
-              <span class="siglas" contenteditable>CDIS </span>
+              <span class="siglas" contenteditable>LOREM</span>
               <span class="stands" contenteditable>
-                Gestion de Proceso de Comisión Disciplinaria
+                Lorem Ipsum Dolor sit<br/>
+                Amet Consectetur
               </span>
             </span>
           </span>
@@ -110,9 +90,10 @@
           <span style="flex-direction: column">
             <span class="brand" contenteditable>XABAL</span>
             <span style="flex-direction: row">
-              <span class="siglas" contenteditable>GESAT </span>
+              <span class="siglas" contenteditable>LOREM</span>
               <span class="stands" contenteditable>
-                Gestión de Actividades Técnicas Productivas
+                Lorem Ipsum Dolor sit<br/>
+                Amet Consectetur
               </span>
             </span>
           </span>
@@ -126,11 +107,11 @@
           <span style="flex-direction: column">
             <span class="brand" contenteditable>XAUCE</span>
             <span style="flex-direction: row">
-              <span class="siglas" contenteditable>CDIS </span>
+              <span class="siglas" contenteditable>LOREM</span>
               <span class="stands" contenteditable>
-                Gestion de Proceso de Comisión Disciplinaria
+                Lorem Ipsum Dolor sit<br/>
+                Amet Consectetur
               </span>
-            </span>
           </span>
         </div>
       </nav>
@@ -142,9 +123,10 @@
           <span style="flex-direction: column">
             <span class="brand" contenteditable>XEDRO</span>
             <span style="flex-direction: row">
-              <span class="siglas" contenteditable>CDIS </span>
+              <span class="siglas" contenteditable>LOREM</span>
               <span class="stands" contenteditable>
-                Gestion de Proceso de Comisión Disciplinaria
+                Lorem Ipsum Dolor sit<br/>
+                Amet Consectetur
               </span>
             </span>
           </span>
@@ -158,14 +140,56 @@
           <span style="flex-direction: column">
             <span class="brand" contenteditable>XILEMA</span>
             <span style="flex-direction: row">
-              <span class="siglas" contenteditable>CDIS </span>
+              <span class="siglas" contenteditable>LOREM</span>
               <span class="stands" contenteditable>
-                Gestion de Proceso de Comisión Disciplinaria
+                Lorem Ipsum Dolor sit<br/>
+                Amet Consectetur
               </span>
             </span>
           </span>
         </div>
-      </nav>
+      </nav></div>
+      <br>
+      <input
+        type="button"
+        value="Copiar todos los estilos CSS"
+        onclick="copyText(document.querySelector('#branduci-style').innerHTML)"
+      /><br><br>
+      <details>
+        <summary
+          onclick='this.nextElementSibling.innerText=document.querySelector("#brand-bars-wrapper").innerHTML.replace(/contenteditable=""/g, "")'
+        >
+          HTML
+        </summary>
+        <pre  class="codearea"></pre>
+      </details>
+      <details>
+        <summary
+          onclick="this.nextElementSibling.innerHTML=document.querySelector('#branduci-style').innerHTML"
+        >
+          CSS
+        </summary>
+        <pre class="codearea"></pre>
+      </details>
+    </div>
+
+    <span class="app-title">alimentacion-app</span>
+    <div class="app" id="alimentacion-app">
+      <textarea
+        class="w100 p b0"
+        v-model="rawText"
+        rows="12"
+        cols="40"
+      ></textarea>
+      <button class="w100">
+        🗐
+        <pre
+          @click="copyModText"
+          v-html="modText"
+          id="modTextContainer"
+          class="w100"
+        ></pre>
+      </button>
     </div>
   </body>
   <script>
@@ -294,64 +318,8 @@ Picadillo (80 g )$ 0`,
       },
     });
   </script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    body {
-      padding-bottom: 80%;
-      background: linear-gradient(rgb(103, 214, 113), rgb(27, 209, 170));
-    }
-    .card {
-      box-shadow: 0 0 4px 0 #0002;
-      padding: 16px;
-      margin: 4px;
-      border-radius: 4px;
-    }
-    .app {
-      resize: both;
-      overflow: auto;
-      box-shadow: 1px 1px 6px 0 #0003 inset;
-      padding: 32px;
-      margin: 4px;
-      margin-bottom: 2rem;
-      border-radius: 8px;
-      background: white;
-      border: 4px solid #0b7;
-      border-top: 3px solid rgb(14, 68, 64);
-    }
-    .w100 {
-      width: 100%;
-    }
-    .p {
-      padding: 8px 16px;
-    }
-    .b0 {
-      border: 0;
-    }
-    #modTextContainer {
-      padding: 32px;
-      background: linear-gradient(90deg, rgb(31, 85, 47), rgb(77, 192, 86));
-      color: #fffc;
-      border-radius: 4px;
-      box-shadow: -1px 1px 8px 0 #0005;
-      text-align: start;
-    }
-    #modTextContainer {
-    }
-    .app-title {
-      color: #fffe;
-      margin-left: 1em;
-      background: #0006;
-      padding: 8px 24px;
-      border-radius: 8px 8px 0 0;
-    }
-  </style>
-
   <!--BRANDUCISTYLE-->
-  <style>
+  <style id="branduci-style">
     :root {
       --spritesuci: "https://www.uci.cu/sites/all/themes/uci/images/sprite.png";
       --xabaldark: #a6351a;
@@ -364,6 +332,13 @@ Picadillo (80 g )$ 0`,
       --upcolor: #323a8b;
       --downcolor: #11134b;
       --standscolor: #726584;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: sans-serif;
     }
     .brand-bar {
       margin-bottom: 8px;
@@ -417,7 +392,7 @@ Picadillo (80 g )$ 0`,
       width: fit-content;
       border-bottom-right-radius: 100px;
       background: linear-gradient(#fff 50%, #dedede);
-      padding: 8px 16px;
+      padding: 8px 32px 8px 16px;
       box-shadow: 2px 0 12px -2px #0005;
     }
     .brandi {
@@ -444,13 +419,7 @@ Picadillo (80 g )$ 0`,
       background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
         no-repeat 0-1890px;
     }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
+    
     .siglas {
       font-weight: 1000;
       font-size: 20pt;
@@ -480,4 +449,75 @@ Picadillo (80 g )$ 0`,
       letter-spacing: -1px;
     }
   </style>
+  <style>
+    body {
+      padding-bottom: 80%;
+      background: linear-gradient(rgb(103, 214, 113), rgb(27, 209, 170));
+    }
+    .codearea{
+      border-radius: 4px;
+      font-weight: 700;
+      box-shadow: 2px 2px 8px 0 #0005 inset;
+      line-height: 1.5;
+      font-family: monospace;
+      overflow-x: auto;
+    padding: 16px;
+    background: #444;
+    color: #eee;}
+    .card {
+      box-shadow: 0 0 4px 0 #0002;
+      padding: 16px;
+      margin: 4px;
+      border-radius: 4px;
+    }
+    .app {
+      resize: both;
+      overflow: auto;
+      box-shadow: 1px 1px 6px 0 #0003 inset;
+      padding: 32px;
+      margin: 4px;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      background: white;
+      border: 4px solid #0b7;
+      border-top: 3px solid rgb(14, 68, 64);
+    }
+    .w100 {
+      width: 100%;
+    }
+    .p {
+      padding: 8px 16px;
+    }
+    .b0 {
+      border: 0;
+    }
+    #modTextContainer {
+      padding: 32px;
+      background: linear-gradient(90deg, rgb(31, 85, 47), rgb(77, 192, 86));
+      color: #fffc;
+      border-radius: 4px;
+      box-shadow: -1px 1px 8px 0 #0005;
+      text-align: start;
+    }
+    #modTextContainer {
+    }
+    .app-title {
+      color: #fffe;
+      margin-left: 1em;
+      background: #0006;
+      padding: 8px 24px;
+      border-radius: 8px 8px 0 0;
+    }
+  </style>
+
+<style>
+  button,input[type=button]{padding: 8px 16px;width: 100%;text-transform: uppercase;}
+</style>
+  <script>
+    function copyText(text){
+      navigator.clipboard.writeText(text);
+      alert("Copiado:\n\n" + text);
+      return text;
+    }
+  </script>
 </html>
