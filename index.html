@@ -238,7 +238,7 @@
       </details>
       <details>
         <summary
-          onclick="this.nextElementSibling.innerHTML=document.querySelector('#branduci-style').innerHTML"
+          onclick="this.nextElementSibling.innerHTML=document.querySelector('#branduci-style').outerHTML"
         >
           CSS
         </summary>
@@ -496,6 +496,7 @@ Picadillo (80 g )$ 0`,
     }
     
     .siglas {
+      text-transform: uppercase;
       font-weight: 1000;
       font-size: 20pt;
       background: -webkit-linear-gradient(
